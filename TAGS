@@ -1,63 +1,0 @@
-
-Book.cpp,702
-Book::Book()Book5,40
-Book::Book(string title, string author, string publisher, string genre, int year) : Title(title)Book10,72
-string Book::getTitle() constgetTitle13,239
-void Book::setTitle(const string title)setTitle17,291
-string Book::getAuthor() constgetAuthor22,355
-void Book::setAuthor(const string author)setAuthor26,409
-string Book::getPublisher() constgetPublisher31,477
-void Book::setPublisher(const string publisher)setPublisher35,538
-string Book::getGenre() constgetGenre41,619
-void Book::setGenre(const string genre)setGenre45,672
-int Book::getYear() constgetYear50,736
-void Book::setYear(const int year)setYear54,783
-void Book::printBook () constprintBook59,840
-
-Book.h,208
-#define BOOK_HBOOK_H2,15
-class Book {Book7,71
-    string Title;Title9,93
-    string Author;Author10,111
-    string Publisher;Publisher11,130
-    string Genre;Genre12,152
-    int Year;Year13,170
-
-LibraryBook.h,212
-#define LIBRARYBOOK_HLIBRARYBOOK_H2,22
-class LibraryBookLibraryBook6,64
-    Book book;book9,92
-    LibraryBook *next;next10,107
-    LibraryBook *prev;    prev11,130
-    LibraryBook()LibraryBook13,158
-
-Library.cpp,572
-Library::Library()Library4,42
-Library::Library( Library& other)Library12,146
-int Library::getnumBooks() constgetnumBooks25,391
-LibraryBook* Library::getFirstBook()getFirstBook30,448
-LibraryBook* Library::getLastBook()getLastBook34,509
-LibraryBook* Library::getBook( const int pos )getBook40,625
-void Library::addBook(const Book book)addBook56,1015
-void Library::moveToFront (LibraryBook *entry)moveToFront78,1604
-void Library::printAllBooks() constprintAllBooks93,1877
-void Library::printBooksOfOneGenre(const string genre)printBooksOfOneGenre105,2120
-
-Library.h,195
-#define LIBRARY_HLIBRARY_H2,18
-class LibraryLibrary9,103
-        LibraryBook* firstBook;firstBook12,128
-        LibraryBook* lastBook;lastBook13,160
-        int numBooks;numBooks14,191
-
-librarylist,0
-
-main.cpp,130
-void readBooksFromFile (string filename, Library &library)readBooksFromFile12,158
-int main ( int argc, char **argv)main29,607
-
-Makefile,29
-all:all1,0
-tags:tags4,62
-
-TAGS,0
