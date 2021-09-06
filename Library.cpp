@@ -9,16 +9,26 @@ Library::Library()
 }
 
 //Copy constructor
-Library::Library( Library& other)
+Library::Library(Library& other)
 {
   //  implement this function
   //firstBook = other.getFirstBook();
   //lastBook = other.getLastBook();
   LibraryBook* current = other.getFirstBook();
 
-  while(current->next) {
-    addBook(current->book);
+  while(current) {
+
+    Book nextBook = Book(current->book);
+    cout << "Next book to add: ";
+    nextBook.printBook();
+    cout << endl;
+    addBook(nextBook);
+    //cout<< "book added." << endl;
+
+    current = current->next;
   }
+
+  printAllBooks();
 
 }
 
