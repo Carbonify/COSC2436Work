@@ -9,27 +9,18 @@ Library::Library()
 }
 
 //Copy constructor
-Library::Library(Library& other)
+Library::Library(Library& other) : firstBook(nullptr), lastBook(nullptr)
 {
   //  implement this function
-  //firstBook = other.getFirstBook();
-  //lastBook = other.getLastBook();
   LibraryBook* current = other.getFirstBook();
 
   while(current) {
 
     Book nextBook = Book(current->book);
-    cout << "Next book to add: ";
-    nextBook.printBook();
-    cout << endl;
     addBook(nextBook);
-    //cout<< "book added." << endl;
 
     current = current->next;
   }
-
-  printAllBooks();
-
 }
 
 int Library::getnumBooks() const
@@ -85,7 +76,7 @@ void Library::addBook(const Book book)
 
 
 // Move a book to the front of the linked list
-void Library::moveToFront (LibraryBook *oneToMove)
+void Library::moveToFront (LibraryBook* oneToMove)
 {
   // implement this function -done?
   LibraryBook* oneBefore = oneToMove->prev;
