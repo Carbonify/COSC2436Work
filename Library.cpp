@@ -98,7 +98,7 @@ void Library::printAllBooks() const
     current->book.printBook();
 
     current = current->next;
-  } while(current->next);
+  } while(current);
 }
 
 // print all Books of a single Genre

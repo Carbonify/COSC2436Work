@@ -23,25 +23,6 @@ class Book {Book7,71
     string Genre;Genre12,152
     int Year;Year13,170
 
-Library.cpp,555
-Library::Library()Library4,42
-Library::Library( Library& other)Library12,152
-int Library::getnumBooks() constgetnumBooks17,222
-LibraryBook* Library::getFirstBook()getFirstBook22,281
-LibraryBook* Library::getLastBook()getLastBook26,343
-LibraryBook* Library::getBook( const int pos )getBook32,460
-void Library::addBook(Book book)addBook38,585
-void Library::moveToFront (LibraryBook *entry)moveToFront45,701
-void Library::printAllBooks() constprintAllBooks51,802
-void Library::printBooksOfOneGenre(string genre)printBooksOfOneGenre57,910
-
-Library.h,195
-#define LIBRARY_HLIBRARY_H2,18
-class LibraryLibrary9,103
-        LibraryBook* firstBook;firstBook12,128
-        LibraryBook* lastBook;lastBook13,160
-        int numBooks;numBooks14,191
-
 LibraryBook.h,212
 #define LIBRARYBOOK_HLIBRARYBOOK_H2,22
 class LibraryBookLibraryBook6,64
@@ -50,9 +31,33 @@ class LibraryBookLibraryBook6,64
     LibraryBook *prev;    prev11,130
     LibraryBook()LibraryBook13,158
 
-Makefile,13
-all:all1,0
+Library.cpp,572
+Library::Library()Library4,42
+Library::Library( Library& other)Library12,146
+int Library::getnumBooks() constgetnumBooks25,391
+LibraryBook* Library::getFirstBook()getFirstBook30,448
+LibraryBook* Library::getLastBook()getLastBook34,509
+LibraryBook* Library::getBook( const int pos )getBook40,625
+void Library::addBook(const Book book)addBook56,1015
+void Library::moveToFront (LibraryBook *entry)moveToFront78,1604
+void Library::printAllBooks() constprintAllBooks93,1877
+void Library::printBooksOfOneGenre(const string genre)printBooksOfOneGenre105,2120
+
+Library.h,195
+#define LIBRARY_HLIBRARY_H2,18
+class LibraryLibrary9,103
+        LibraryBook* firstBook;firstBook12,128
+        LibraryBook* lastBook;lastBook13,160
+        int numBooks;numBooks14,191
+
+librarylist,0
 
 main.cpp,130
 void readBooksFromFile (string filename, Library &library)readBooksFromFile12,158
 int main ( int argc, char **argv)main29,607
+
+Makefile,29
+all:all1,0
+tags:tags4,62
+
+TAGS,0
