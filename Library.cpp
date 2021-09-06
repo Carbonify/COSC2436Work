@@ -12,8 +12,8 @@ Library::Library()
 Library::Library( Library& other)
 {
   //  implement this function
-  firstBook = other.getFirstBook();
-  lastBook = other.getLastBook();
+  //firstBook = other.getFirstBook();
+  //lastBook = other.getLastBook();
   LibraryBook* current = other.getFirstBook();
 
   while(current->next) {
@@ -75,17 +75,25 @@ void Library::addBook(const Book book)
 
 
 // Move a book to the front of the linked list
-void Library::moveToFront (LibraryBook *entry)
+void Library::moveToFront (LibraryBook *oneToMove)
 {
   // implement this function -done?
+  LibraryBook* oneBefore = oneToMove->prev;
+  LibraryBook* oneAfter = oneToMove->next;
+
+
   if(firstBook) {
-    firstBook->prev = entry;
-    entry->next = firstBook->next;
-    firstBook = entry;
+    if(oneToMove == firstBook) return; //do nothing if already first
+
+    oneAfter->prev = oneToMove->prev;
+    oneBefore->next = oneToMove->next;
+    oneToMove->next = firstBook;
+    oneToMove->prev = nullptr;
+    firstBook = oneToMove;
 
   } else {
-    firstBook = entry;
-    lastBook = entry;
+    firstBook = oneToMove;
+    lastBook = oneToMove;
   }
 }
 
