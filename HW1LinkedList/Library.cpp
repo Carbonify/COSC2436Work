@@ -1,15 +1,12 @@
 #include "Library.h"
 #include <iostream>
 
-Library::Library()
+Library::Library() : firstBook(nullptr), lastBook(nullptr), numBooks(0)
 {
-  numBooks = 0;
-  firstBook = nullptr;
-  lastBook = nullptr;
 }
 
 //Copy constructor
-Library::Library(Library& other) : firstBook(nullptr), lastBook(nullptr)
+Library::Library(const Library& other) : firstBook(nullptr), lastBook(nullptr), numBooks(0)
 {
   //  implement this function
   LibraryBook* current = other.getFirstBook();
@@ -28,17 +25,17 @@ int Library::getnumBooks() const
   return numBooks;
 }
 
-LibraryBook* Library::getFirstBook()
+LibraryBook* Library::getFirstBook() const
 {
   return firstBook;
 }
-LibraryBook* Library::getLastBook()
+LibraryBook* Library::getLastBook() const
 {
   return lastBook;
 }
 
 // return a pointer to the n'th book in the linked list
-LibraryBook* Library::getBook( const int pos )
+LibraryBook* Library::getBook( const int pos ) const
 {
   // implement this function -done
   LibraryBook* current = firstBook;
@@ -121,7 +118,7 @@ void Library::printAllBooks() const
 }
 
 // print all Books of a single Genre
-void Library::printBooksOfOneGenre(const string genre)
+void Library::printBooksOfOneGenre(const string genre) const
 {
   // implement this function
   LibraryBook* current = firstBook;
