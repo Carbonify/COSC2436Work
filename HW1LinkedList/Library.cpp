@@ -82,19 +82,29 @@ void Library::moveToFront (LibraryBook* oneToMove)
   LibraryBook* oneBefore = oneToMove->prev;
   LibraryBook* oneAfter = oneToMove->next;
 
+  if(numBooks == 0) {
+    firstBook = oneToMove;
+    lastBook = oneToMove;
+    return;
+  }
 
-  if(firstBook) {
-    if(oneToMove == firstBook) return; //do nothing if already first
+
+  if(! oneBefore) { // already at front
+    return;
+  } else if (! oneAfter) { //moving last entry
+    oneBefore->next = nullptr;
+    oneToMove->prev = nullptr;
+    oneToMove->next = firstBook;
+    lastBook = oneBefore;
+    firstBook = oneToMove;
+
+  } else { //moving an entry in the middle
 
     oneAfter->prev = oneToMove->prev;
     oneBefore->next = oneToMove->next;
     oneToMove->next = firstBook;
     oneToMove->prev = nullptr;
     firstBook = oneToMove;
-
-  } else {
-    firstBook = oneToMove;
-    lastBook = oneToMove;
   }
 }
 
