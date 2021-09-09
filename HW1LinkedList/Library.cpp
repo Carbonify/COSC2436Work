@@ -99,6 +99,7 @@ void Library::moveToFront (LibraryBook* oneToMove)
 
     oneAfter->prev = oneToMove->prev;
     oneBefore->next = oneToMove->next;
+
     oneToMove->next = firstBook;
     oneToMove->prev = nullptr;
     firstBook = oneToMove;
@@ -108,7 +109,7 @@ void Library::moveToFront (LibraryBook* oneToMove)
 // print all Books
 void Library::printAllBooks() const
 {
-  // implement this function -done
+
   LibraryBook* current = firstBook;
   do {
     current->book.printBook();
@@ -120,7 +121,11 @@ void Library::printAllBooks() const
 // print all Books of a single Genre
 void Library::printBooksOfOneGenre(const string genre) const
 {
-  // implement this function
+
+  if (! firstBook) { //empty list
+    return;
+  }
+
   LibraryBook* current = firstBook;
   do {
     if (current->book.getGenre() == genre) {
