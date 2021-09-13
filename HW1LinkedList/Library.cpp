@@ -22,10 +22,7 @@ Library::Library(const Library& other) : firstBook(nullptr), lastBook(nullptr), 
   LibraryBook* current = other.getFirstBook();
 
   while(current) {
-
-    Book nextBook = Book(current->book);
-    addBook(nextBook);
-
+    addBook(current->book);
     current = current->next;
   }
 }
@@ -47,15 +44,13 @@ LibraryBook* Library::getLastBook() const
 // return a pointer to the n'th book in the linked list
 LibraryBook* Library::getBook( const int pos ) const
 {
-  // implement this function -done
+  if (pos > numBooks || pos < 0) {
+    cout << "Book at position " << pos << " not available." << endl;
+    return nullptr;
+  }
   LibraryBook* current = firstBook;
   for(int i = 0; i < pos; i++) {
-    if (current->next) {
-      current = current->next;
-    } else {
-      cout << "Book at position " << pos << " not available." << endl;
-      return nullptr;
-    }
+    current = current->next;
   }
   return current;
 }
@@ -66,7 +61,7 @@ void Library::addBook(const Book book)
   // implement this function -done
   LibraryBook* addedBook = new LibraryBook();
   // Set up newly added book based on provided book
-  addedBook->book = Book(book.getTitle(), book.getAuthor(), book.getPublisher(), book.getGenre(), book.getYear());
+  addedBook->book = book;
 
   if (lastBook) {
     addedBook->prev = lastBook;
@@ -119,29 +114,24 @@ void Library::moveToFront (LibraryBook* oneToMove)
 // print all Books
 void Library::printAllBooks() const
 {
-
   LibraryBook* current = firstBook;
-  do {
+  while(current) {
     current->book.printBook();
 
     current = current->next;
-  } while(current);
+  }
 }
 
 // print all Books of a single Genre
 void Library::printBooksOfOneGenre(const string genre) const
 {
 
-  if (! firstBook) { //empty list
-    return;
-  }
-
   LibraryBook* current = firstBook;
-  do {
+  while(current) {
     if (current->book.getGenre() == genre) {
       current->book.printBook();
     }
 
     current = current->next;
-  } while(current->next);
+  }
 }
