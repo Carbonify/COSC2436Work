@@ -5,6 +5,16 @@ Library::Library() : firstBook(nullptr), lastBook(nullptr), numBooks(0)
 {
 }
 
+//destructor
+Library::~Library() {
+  LibraryBook* current = lastBook;
+  while(current) {
+    delete current->next;
+    current = current->prev;
+  }
+  delete current;
+}
+
 //Copy constructor
 Library::Library(const Library& other) : firstBook(nullptr), lastBook(nullptr), numBooks(0)
 {
