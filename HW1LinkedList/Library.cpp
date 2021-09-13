@@ -5,24 +5,23 @@ Library::Library() : firstBook(nullptr), lastBook(nullptr), numBooks(0)
 {
 }
 
-//destructor
+
 Library::~Library() {
   LibraryBook* current = lastBook;
   while(current) {
     delete current->next;
+    //iterating backwards through the list so we can delete without losing access to anything
     current = current->prev;
   }
   delete current;
 }
 
-//Copy constructor
 Library::Library(const Library& other) : firstBook(nullptr), lastBook(nullptr), numBooks(0)
 {
-  //  implement this function
-  LibraryBook* current = other.getFirstBook();
+    LibraryBook* current = other.getFirstBook();
 
   while(current) {
-    addBook(current->book);
+    addBook(current->book); //addBook handles node creation and pointer linking
     current = current->next;
   }
 }
@@ -44,7 +43,7 @@ LibraryBook* Library::getLastBook() const
 // return a pointer to the n'th book in the linked list
 LibraryBook* Library::getBook( const int pos ) const
 {
-  if (pos > numBooks || pos < 0) {
+  if (pos > numBooks || pos < 0) { //must provide valid position
     cout << "Book at position " << pos << " not available." << endl;
     return nullptr;
   }
@@ -58,12 +57,12 @@ LibraryBook* Library::getBook( const int pos ) const
 // add a Book to the end of the linked list
 void Library::addBook(const Book book)
 {
-  // implement this function -done
+
   LibraryBook* addedBook = new LibraryBook();
-  // Set up newly added book based on provided book
+  // Set up newly added node based on provided book
   addedBook->book = book;
 
-  if (lastBook) {
+  if (lastBook) { //Add to list with entries existing
     addedBook->prev = lastBook;
     lastBook->next = addedBook;
     lastBook = addedBook;
@@ -73,18 +72,17 @@ void Library::addBook(const Book book)
     lastBook = addedBook;
   }
   numBooks++; //increment count of books in list
-
 }
 
 
 // Move a book to the front of the linked list
 void Library::moveToFront (LibraryBook* oneToMove)
 {
-  // implement this function -done?
+  // pointers for clarity purposes, avoids having to double-dereference
   LibraryBook* oneBefore = oneToMove->prev;
   LibraryBook* oneAfter = oneToMove->next;
 
-  if(numBooks == 0) {
+  if(numBooks == 0) { //empty list
     firstBook = oneToMove;
     lastBook = oneToMove;
     return;
@@ -117,7 +115,6 @@ void Library::printAllBooks() const
   LibraryBook* current = firstBook;
   while(current) {
     current->book.printBook();
-
     current = current->next;
   }
 }
@@ -125,13 +122,11 @@ void Library::printAllBooks() const
 // print all Books of a single Genre
 void Library::printBooksOfOneGenre(const string genre) const
 {
-
   LibraryBook* current = firstBook;
   while(current) {
     if (current->book.getGenre() == genre) {
       current->book.printBook();
     }
-
     current = current->next;
   }
 }

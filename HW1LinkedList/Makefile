@@ -1,6 +1,6 @@
 CPPFLAGS=-g -Wall
 
-librarylist: main.o Library.o Book.o
+librarylist: main.o Library.o Book.o TAGS
 	g++ $(CPPFLAGS) main.o Library.o Book.o -o librarylist
 
 main.o: Book.h Library.h
@@ -13,5 +13,5 @@ Book.o: Book.h
 	g++ $(CPPFLAGS) -c Book.cpp
 
 
-tags:
+TAGS:
 	unitags -eR *
