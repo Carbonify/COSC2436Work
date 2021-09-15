@@ -35,5 +35,7 @@ public:
   // print all Books of a single Genre
   void printBooksOfOneGenre(const string genre) const;
 
+  void removeBook(LibraryBook* entry);
+
 };
 #endif // LIBRARY_H

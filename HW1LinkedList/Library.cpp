@@ -109,6 +109,37 @@ void Library::moveToFront (LibraryBook* oneToMove)
   }
 }
 
+//Remove a book from the list
+void Library::removeBook(LibraryBook* entry) {
+  LibraryBook* oneBefore = entry->prev;
+  LibraryBook* oneAfter = entry->next;
+
+  if (numBooks == 0) return; //empty list
+
+  if (numBooks == 1) { // single item in list
+    firstBook = nullptr;
+    lastBook = nullptr;
+    delete entry;
+    numBooks = 0;
+    return;
+  }
+
+  if(!oneBefore) { //removing head
+    firstBook = oneAfter;
+    oneAfter->prev = nullptr;
+    delete entry;
+  } else if (!oneAfter) { //deleting tail
+    lastBook = oneBefore;
+    oneBefore->next = nullptr;
+    delete entry;
+  } else { //deleting middle entry
+    oneBefore->next = oneAfter;
+    oneAfter->prev = oneBefore;
+    delete entry;
+  }
+  numBooks--;
+}
+
 // print all Books
 void Library::printAllBooks() const
 {
