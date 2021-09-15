@@ -46,44 +46,36 @@ int main ( int argc, char **argv)
   if ( argc > 1 ) {
     whatToDo = std::atoi(argv[1]);
   }
-  if ( whatToDo == 0 ) {
+  if ( whatToDo == 0 ) { //count numBooks test
     cout << "Number of books in library is : " << library.getnumBooks() << endl;
   }
-  else if ( whatToDo == 1 ) {
+  else if ( whatToDo == 1 ) { // get specific book
     LibraryBook *oneBook = library.getBook(4);
     cout << "Book no. 4 is ";
     oneBook->book.printBook();
   }
-  else if ( whatToDo == 2 ) {
+  else if ( whatToDo == 2 ) { //test genre print
     library.printBooksOfOneGenre("Novel");
   }
-  else if ( whatToDo == 3 ) {
+  else if ( whatToDo == 3 ) { //test full print
     library.printAllBooks();
   }
-  else if ( whatToDo == 4 ) {
+  else if ( whatToDo == 4 ) { //test move to front
     LibraryBook *oneBook = library.getBook(4);
     library.moveToFront(oneBook);
     library.printAllBooks();
   }
-  else if ( whatToDo == 5 ) {
+  else if ( whatToDo == 5 ) { //test copy constructor
     Library secondLibrary(library);
     secondLibrary.printAllBooks();
   }
-  else if (whatToDo == 6) {
-    Library manualTest;
-    cout << "Initial setup" << endl;
-    manualTest.addBook(Book("First title", "jack", "clearing house", "fantasy", 3200));
-    manualTest.addBook(Book("Second title", "penny", "generic", "nonfiction", 1000));
-    manualTest.addBook(Book("Third title", "william", "theory", "sci fi", 1900));
-
-    manualTest.printAllBooks();
-    cout << "moving second book to first" << endl;
-    manualTest.moveToFront(manualTest.getBook(1));
-    cout << "book moved" << endl;
-
-    manualTest.printAllBooks();
-
-
+  else if (whatToDo == 6) { //test removeBook
+    cout << "Book to remove:" << endl;
+    LibraryBook* removeCandidate = library.getBook(3);
+    removeCandidate->book.printBook();
+    cout << "Removing and printing..." << endl;
+    library.removeBook(removeCandidate);
+    library.printAllBooks();
   }
   else {
     cout << "Please provide an argument between 0 and 5\n";
