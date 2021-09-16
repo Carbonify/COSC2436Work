@@ -18,7 +18,7 @@ Library::~Library() {
 
 Library::Library(const Library& other) : firstBook(nullptr), lastBook(nullptr), numBooks(0)
 {
-    LibraryBook* current = other.getFirstBook();
+  LibraryBook* current = other.getFirstBook();
 
   while(current) {
     addBook(current->book); //addBook handles node creation and pointer linking
