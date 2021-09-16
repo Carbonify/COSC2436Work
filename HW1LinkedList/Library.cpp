@@ -114,12 +114,10 @@ void Library::removeBook(LibraryBook* entry) {
   LibraryBook* oneBefore = entry->prev;
   LibraryBook* oneAfter = entry->next;
 
-  if (numBooks == 0) return; //empty list
-
-  if (numBooks == 1) { // single item in list
+  if (numBooks < 2) { // single item in list, or empty
     firstBook = nullptr;
     lastBook = nullptr;
-    delete entry;
+    delete entry; //if empty list, this just deletes nullptr
     numBooks = 0;
     return;
   }
