@@ -65,6 +65,7 @@ public:
       list[queueRear] = queueElement;
       queueRear = (queueRear + 1) % maxQueueSize; //wraps around back to 0 if we've hit the end of the array
       count++;
+      std::cout << "New Client added. Queue now has " << count << " clients." << std::endl;
     }
 	}
 
@@ -74,6 +75,7 @@ public:
     } else {
       queueFront = (queueFront + 1) % maxQueueSize; //wraps around back to 0 if we've hit the end of the array
       count--;
+      std::cout << "Client removed from queue. Queue now has " << count << " clients." << std::endl;
       //should really return the dequeued element, but....
     }
 	}
