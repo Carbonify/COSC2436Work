@@ -21,7 +21,6 @@ public:
     queueFront = 0;
     queueRear = 0;
     list = new Type[maxQueueSize];
-
   }
 
 	~queueType() {
@@ -62,22 +61,33 @@ public:
     if(count >= maxQueueSize) { //queue full
       std::cout << "Can not add to a full queue" << std::endl;
     } else {
+      if(!isEmptyQueue()) {
+        queueRear = (queueRear + 1) % maxQueueSize; //wraps around back to 0 if we've hit the end of the array
+      }
+
       list[queueRear] = queueElement;
-      queueRear = (queueRear + 1) % maxQueueSize; //wraps around back to 0 if we've hit the end of the array
       count++;
       std::cout << "New client added. Queue now has " << count << " clients." << std::endl;
     }
 	}
 
 	void deQueue() {
-    if(count == 0) {
+    if(isEmptyQueue()) {
       std::cout << "Cannot remove from an empty queue" << std::endl;
+    } else if (count == 1) { //removing last element of list
+
+      //restore values to defaults
+      count = 0;
+      queueFront = 0;
+      queueRear = 0;
+
+      std::cout << "Client removed from queue. Queue now has " << count << " clients." << std::endl;
     } else {
       queueFront = (queueFront + 1) % maxQueueSize; //wraps around back to 0 if we've hit the end of the array
       count--;
       std::cout << "Client removed from queue. Queue now has " << count << " clients." << std::endl;
-      //should really return the dequeued element, but....
     }
+    //should really return the dequeued element, but....
 	}
 
 
