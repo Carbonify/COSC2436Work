@@ -18,7 +18,7 @@ server_type.o: server_type.h client_type.h
 	g++ $(CPPFLAGS) -c server_type.cpp
 
 
-update_waiting_queue_type.o: waiting_client_queue_type.h
+update_waiting_queue_type.o: waiting_client_queue_type.h queue_type.h
 	g++ $(CPPFLAGS) -c update_waiting_queue_type.cpp
 
 
