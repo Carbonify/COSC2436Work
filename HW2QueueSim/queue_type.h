@@ -10,18 +10,21 @@ using namespace std;
 template <class Type>
 class queueType : public queueADT<Type>
 {
+  //the implementation of these funcs should really be seperated out into
+  //a cpp file, with just the declarations here, but eh
 public:
 	queueType(int queueSize = 100)
   {
-    maxQueueSize = queueSize;
+    maxQueueSize = (queueSize > 1)? queueSize : 100;
     count = 0;
     queueFront = 0;
     queueRear = 0;
     list = new Type[queueSize];
+
   }
 
 	~queueType() {
-	// implement destructor
+    delete[] list;
 	}
 
 	bool isEmptyQueue() const {
@@ -32,17 +35,16 @@ public:
 		return (count == maxQueueSize);
 	}
 
-   int getSize() const {
-      return count;
-   }
+  int getSize() const {
+    return count;
+  }
 
-   int getMaxCapacity() const {
-      return maxQueueSize;
-   }
+  int getMaxCapacity() const {
+    return maxQueueSize;
+  }
 
-	void initializeQueue() {
-   // implement function
-	}
+	void initializeQueue(); //unused? can be done in constructor
+
 
 	Type front() const {
 		assert(!isEmptyQueue());
@@ -55,11 +57,11 @@ public:
 	}
 
 	void enQueue(const Type& queueElement) {
-   // implement function
+    // implement function
 	}
 
 	void deQueue() {
-	// implement function
+    // implement function
 	}
 
 
