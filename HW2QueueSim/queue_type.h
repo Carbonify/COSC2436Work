@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <cassert>
-#include <iostream>
 
 #include "queueADT.h"
 
@@ -21,11 +20,12 @@ public:
     count = 0;
     queueFront = 0;
     queueRear = 0;
-    list = new Type[queueSize];
+    list = new Type[maxQueueSize];
 
   }
 
 	~queueType() {
+    //All other members are on stack and will be auto-freed
     delete[] list;
 	}
 
@@ -59,9 +59,7 @@ public:
 	}
 
 	void enQueue(const Type& queueElement) {
-
-    // implement function
-    if(count >= maxQueueSize) {
+    if(count >= maxQueueSize) { //queue full
       std::cout << "Can not add to a full queue" << std::endl;
     } else {
       list[queueRear] = queueElement;
@@ -83,10 +81,10 @@ public:
 
 private:
 	int maxQueueSize; //variable to store the maximum queue size
-	int count; //variable to store the number of
-	int queueFront; //variable to point to the first
-	int queueRear; //variable to point to the last
-	Type* list; //pointer to the array that holds
+	int count; //variable to store the number of elements
+	int queueFront; //variable to point to the first element
+	int queueRear; //variable to point to the last element
+	Type* list; //pointer to the array that holds the queue
 };
 
 #endif // !QUEUE_TYPE_H
