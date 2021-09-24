@@ -12,7 +12,7 @@ using namespace std;
 template <class Type>
 class queueType : public queueADT<Type>
 {
-  //the implementation of these funcs should really be seperated out into
+  //the implementation of these funcs should really be separated out into
   //a cpp file, with just the declarations here, but eh
 public:
 	queueType(int queueSize = 100)
@@ -66,11 +66,18 @@ public:
     } else {
       list[queueRear] = queueElement;
       queueRear = (queueRear + 1) % maxQueueSize; //wraps around back to 0 if we've hit the end of the array
+      count++;
     }
 	}
 
 	void deQueue() {
-    // implement function
+    if(count == 0) {
+      std::cout << "Cannot remove from an empty queue" << std::endl;
+    } else {
+      queueFront = (queueFront + 1) % maxQueueSize; //wraps around back to 0 if we've hit the end of the array
+      count--;
+      //should really return the dequeued element, but....
+    }
 	}
 
 
