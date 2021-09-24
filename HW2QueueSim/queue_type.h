@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <cassert>
+#include <iostream>
+
 #include "queueADT.h"
 
 using namespace std;
@@ -57,7 +59,14 @@ public:
 	}
 
 	void enQueue(const Type& queueElement) {
+
     // implement function
+    if(count >= maxQueueSize) {
+      std::cout << "Can not add to a full queue" << std::endl;
+    } else {
+      list[queueRear] = queueElement;
+      queueRear = (queueRear + 1) % maxQueueSize; //wraps around back to 0 if we've hit the end of the array
+    }
 	}
 
 	void deQueue() {

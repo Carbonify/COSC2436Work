@@ -22,5 +22,5 @@ update_waiting_queue_type.o: waiting_client_queue_type.h queue_type.h
 	g++ $(CPPFLAGS) -c update_waiting_queue_type.cpp
 
 
-TAGS: queuesim
+TAGS:
 	unitags -eR *
