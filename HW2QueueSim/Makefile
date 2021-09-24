@@ -24,3 +24,6 @@ update_waiting_queue_type.o: waiting_client_queue_type.h queue_type.h
 
 TAGS:
 	unitags -eR *
+
+clean:
+	rm *.o queuesim
