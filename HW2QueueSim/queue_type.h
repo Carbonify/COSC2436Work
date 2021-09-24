@@ -11,9 +11,14 @@ template <class Type>
 class queueType : public queueADT<Type>
 {
 public:
-	queueType(int queueSize = 100) {
-   // implement constructor
-	}
+	queueType(int queueSize = 100)
+  {
+    maxQueueSize = queueSize;
+    count = 0;
+    queueFront = 0;
+    queueRear = 0;
+    list = new Type[queueSize];
+  }
 
 	~queueType() {
 	// implement destructor
@@ -26,7 +31,7 @@ public:
 	bool isFullQueue() const {
 		return (count == maxQueueSize);
 	}
-	
+
    int getSize() const {
       return count;
    }
