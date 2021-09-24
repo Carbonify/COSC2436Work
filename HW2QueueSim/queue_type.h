@@ -45,7 +45,7 @@ public:
     return maxQueueSize;
   }
 
-	void initializeQueue(); //unused? can be done in constructor
+	void initializeQueue() {} //Unused, but must be declared because C++
 
 
 	Type front() const {
@@ -65,7 +65,7 @@ public:
       list[queueRear] = queueElement;
       queueRear = (queueRear + 1) % maxQueueSize; //wraps around back to 0 if we've hit the end of the array
       count++;
-      std::cout << "New Client added. Queue now has " << count << " clients." << std::endl;
+      std::cout << "New client added. Queue now has " << count << " clients." << std::endl;
     }
 	}
 
