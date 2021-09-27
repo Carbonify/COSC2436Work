@@ -20,6 +20,24 @@ public:
     list = new Type[maxQueueSize];
   }
 
+  //copy constructor, copies and condenses the queue to start at 0
+  queueType(const queueType& other) {
+    list = new Type[other.maxQueueSize];
+
+    int writePosition = 0; //we start writing at position 0
+
+    //Iterate through other, starting at the front of other's queue and going until we hit
+    //other's queueRear - i must wrap around to 0 upon hitting the end of the array, because
+    //queueRear could be ahead of queueFront.
+    for(int i = other.queueFront; i != other.queueRear; i = (i+1) % maxQueueSize) {
+      list[writePosition] = other.list[i];
+      writePosition++;
+    }
+    queueRear = writePosition; //new rear is wherever we reached while writing
+    queueFront = 0;
+    count = other.count; //sync count, as that hasn't changed
+  }
+
 
   ~queueType() {
     delete[] list;

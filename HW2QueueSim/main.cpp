@@ -4,6 +4,8 @@
 #include "server_list_type.h"
 #include "waiting_client_queue_type.h"
 
+#include "queue_type.h"
+
 
 using namespace std;
 
@@ -26,6 +28,16 @@ void setSimulationParameters(int& sTime, int& numOfServers, int& maxPacket, int&
 
 int main()
 {
+  /// QUICK TEST OF COPY CONSTRUCTOR
+  queueType<int> test;
+  test.enQueue(3);
+  test.enQueue(4);
+  test.enQueue(5);
+
+  queueType<int> test2(test);
+  test2.deQueue();
+
+  /// END
 	int clock; //simulation global clock
 	int time, numOfServers, maxPacket, betweenArrival; //simulation parameters
 	int totalWaitTime = 0;
@@ -60,7 +72,7 @@ int main()
 			clientQueue.updateWaitingQueue();
 
 		p = (p * 7 + 3) % 100;
-		
+
 		if ( p/100.0 > exp(-lambda))
 		{
 			// If a new client arrives, put him in the queue
