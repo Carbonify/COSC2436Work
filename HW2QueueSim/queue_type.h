@@ -38,6 +38,12 @@ public:
     count = other.count; //sync count, as that hasn't changed
   }
 
+  void printQueue() {
+    for(int i = queueFront; i != queueRear; i = (i+1) % maxQueueSize) {
+      std::cout << "[" << i << "] " << list[i] << std::endl;
+    }
+  }
+
 
   ~queueType() {
     delete[] list;
