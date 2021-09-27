@@ -22,9 +22,12 @@ public:
 
   //copy constructor, copies and condenses the queue to start at 0
   queueType(const queueType& other) {
+    initializeQueue();
     list = new Type[other.maxQueueSize];
 
-    int writePosition = 0; //we start writing at position 0
+    //we start writing at position 0
+    //we want to condense this new queue so it starts from 0 rather than an arbitrary location
+    int writePosition = 0;
 
     //Iterate through other, starting at the front of other's queue and going until we hit
     //other's queueRear - i must wrap around to 0 upon hitting the end of the array, because
@@ -35,7 +38,6 @@ public:
     }
     //new rear is wherever we reached while writing, -1 because we go one farther than we need to
     queueRear = writePosition-1;
-    queueFront = 0;
     count = other.count; //sync count, as that hasn't changed
   }
 
