@@ -2,6 +2,7 @@
 #define QUEUE_TYPE_H
 
 #include <iostream>
+#include <cstdio>
 #include <cassert>
 
 #include "queueADT.h"
@@ -59,7 +60,7 @@ public:
 
   void enQueue(const Type& queueElement) {
     if(count >= maxQueueSize) { //queue full
-      std::cout << "Can not add to a full queue" << std::endl;
+      printf("Can not add to a full queue");
     } else {
       if(!isEmptyQueue()) {
         queueRear = (queueRear + 1) % maxQueueSize; //wraps around back to 0 if we've hit the end of the array
@@ -67,13 +68,13 @@ public:
 
       list[queueRear] = queueElement;
       count++;
-      std::cout << "New client added. Queue now has " << count << " clients." << std::endl;
+      printf("New client added. Queue now has %d clients.", count);
     }
   }
 
   void deQueue() {
     if(isEmptyQueue()) {
-      std::cout << "Cannot remove from an empty queue" << std::endl;
+      printf("Cannot remove from an empty queue");
     } else if (count == 1) { //removing last element of list
 
       //restore values to defaults
@@ -81,11 +82,11 @@ public:
       queueFront = 0;
       queueRear = 0;
 
-      std::cout << "Client removed from queue. Queue now has " << count << " clients." << std::endl;
+      printf("Client removed from queue. Queue now has %d clients.", count);
     } else {
       queueFront = (queueFront + 1) % maxQueueSize; //wraps around back to 0 if we've hit the end of the array
       count--;
-      std::cout << "Client removed from queue. Queue now has " << count << " clients." << std::endl;
+      printf("Client removed from queue. Queue now has %d clients.", count);
     }
     //should really return the dequeued element, but....
   }
