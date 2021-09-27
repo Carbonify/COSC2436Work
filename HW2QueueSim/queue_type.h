@@ -29,17 +29,18 @@ public:
     //Iterate through other, starting at the front of other's queue and going until we hit
     //other's queueRear - i must wrap around to 0 upon hitting the end of the array, because
     //queueRear could be ahead of queueFront.
-    for(int i = other.queueFront; i != other.queueRear; i = (i+1) % maxQueueSize) {
+    for(int i = other.queueFront; i <= other.queueRear; i = (i+1) % maxQueueSize) {
       list[writePosition] = other.list[i];
       writePosition++;
     }
-    queueRear = writePosition; //new rear is wherever we reached while writing
+    //new rear is wherever we reached while writing, -1 because we go one farther than we need to
+    queueRear = writePosition-1;
     queueFront = 0;
     count = other.count; //sync count, as that hasn't changed
   }
 
   void printQueue() {
-    for(int i = queueFront; i != queueRear; i = (i+1) % maxQueueSize) {
+    for(int i = queueFront; i <= queueRear; i = (i+1) % maxQueueSize) {
       std::cout << "[" << i << "] " << list[i] << std::endl;
     }
   }

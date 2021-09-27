@@ -33,10 +33,20 @@ int main()
   test.enQueue(3);
   test.enQueue(4);
   test.enQueue(5);
+  test.enQueue(6);
+  test.printQueue();
 
+  std::cout << "Done printing test 1, removing one and printing again..." << std::endl;
+  test.deQueue();
+  test.printQueue();
+
+
+  std::cout << "Printing copy made after removal..." << endl;
   queueType<int> test2(test);
-  test2.deQueue();
 
+  test2.printQueue();
+
+  return 0;
   /// END
 	int clock; //simulation global clock
 	int time, numOfServers, maxPacket, betweenArrival; //simulation parameters
