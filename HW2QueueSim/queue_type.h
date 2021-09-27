@@ -14,7 +14,7 @@ class queueType : public queueADT<Type>
   //the implementation of these funcs should really be separated out into
   //a cpp file, with just the declarations here, but eh
 public:
-	queueType(int queueSize = 100)
+  queueType(int queueSize = 100)
   {
     maxQueueSize = (queueSize > 1)? queueSize : 100;
     count = 0;
@@ -23,18 +23,18 @@ public:
     list = new Type[maxQueueSize];
   }
 
-	~queueType() {
+  ~queueType() {
     //All other members are on stack and will be auto-freed
     delete[] list;
-	}
+  }
 
-	bool isEmptyQueue() const {
-		return (count == 0);
-	}
+  bool isEmptyQueue() const {
+    return (count == 0);
+  }
 
-	bool isFullQueue() const {
-		return (count == maxQueueSize);
-	}
+  bool isFullQueue() const {
+    return (count == maxQueueSize);
+  }
 
   int getSize() const {
     return count;
@@ -44,20 +44,20 @@ public:
     return maxQueueSize;
   }
 
-	void initializeQueue() {} //Unused, but must be declared because C++
+  void initializeQueue() {} //Unused, but must be declared because C++
 
 
-	Type front() const {
-		assert(!isEmptyQueue());
-		return list[queueFront];
-	}
+  Type front() const {
+    assert(!isEmptyQueue());
+    return list[queueFront];
+  }
 
-	Type back() const {
-		assert(!isEmptyQueue());
-		return list[queueRear];
-	}
+  Type back() const {
+    assert(!isEmptyQueue());
+    return list[queueRear];
+  }
 
-	void enQueue(const Type& queueElement) {
+  void enQueue(const Type& queueElement) {
     if(count >= maxQueueSize) { //queue full
       std::cout << "Can not add to a full queue" << std::endl;
     } else {
@@ -69,9 +69,9 @@ public:
       count++;
       std::cout << "New client added. Queue now has " << count << " clients." << std::endl;
     }
-	}
+  }
 
-	void deQueue() {
+  void deQueue() {
     if(isEmptyQueue()) {
       std::cout << "Cannot remove from an empty queue" << std::endl;
     } else if (count == 1) { //removing last element of list
@@ -88,15 +88,15 @@ public:
       std::cout << "Client removed from queue. Queue now has " << count << " clients." << std::endl;
     }
     //should really return the dequeued element, but....
-	}
+  }
 
 
 private:
-	int maxQueueSize; //variable to store the maximum queue size
-	int count; //variable to store the number of elements
-	int queueFront; //variable to point to the first element
-	int queueRear; //variable to point to the last element
-	Type* list; //pointer to the array that holds the queue
+  int maxQueueSize; //variable to store the maximum queue size
+  int count; //variable to store the number of elements
+  int queueFront; //variable to point to the first element
+  int queueRear; //variable to point to the last element
+  Type* list; //pointer to the array that holds the queue
 };
 
 #endif // !QUEUE_TYPE_H
