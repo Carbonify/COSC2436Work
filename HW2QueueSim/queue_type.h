@@ -62,7 +62,7 @@ public:
 
   void enQueue(const Type& queueElement) {
     if(count >= maxQueueSize) { //queue full
-      printf("Can not add to a full queue");
+      printf("Can not add to a full queue\n");
     } else {
       if(!isEmptyQueue()) {
         queueRear = (queueRear + 1) % maxQueueSize; //wraps around back to 0 if we've hit the end of the array
@@ -70,21 +70,21 @@ public:
 
       list[queueRear] = queueElement;
       count++;
-      printf("New client added. Queue now has %d clients.", count);
+      printf("New client added. Queue now has %d clients.\n", count);
     }
   }
 
   void deQueue() {
     if(isEmptyQueue()) {
-      printf("Cannot remove from an empty queue");
+      printf("Cannot remove from an empty queue\n");
     } else if (count == 1) { //removing last element of list
       initializeQueue();
 
-      printf("Client removed from queue. Queue now has %d clients.", count);
+      printf("Client removed from queue. Queue now has %d clients.\n", count);
     } else {
       queueFront = (queueFront + 1) % maxQueueSize; //wraps around back to 0 if we've hit the end of the array
       count--;
-      printf("Client removed from queue. Queue now has %d clients.", count);
+      printf("Client removed from queue. Queue now has %d clients.\n", count);
     }
     //should really return the dequeued element, but....
   }
