@@ -23,7 +23,10 @@ public:
   //copy constructor, copies and condenses the queue to start at 0
   queueType(const queueType& other) {
     initializeQueue();
+
+    //sync list sizes
     list = new Type[other.maxQueueSize];
+    maxQueueSize = other.maxQueueSize;
 
     //we start writing at position 0
     //we want to condense this new queue so it starts from 0 rather than an arbitrary location
@@ -37,6 +40,7 @@ public:
       writePosition++;
     }
     //new rear is wherever we reached while writing, -1 because we go one farther than we need to
+    //and queuerear should point to the actual rear element's index
     queueRear = writePosition-1;
     count = other.count; //sync count, as that hasn't changed
   }
