@@ -2,3 +2,5 @@ TAGS
 *.o
 queuesim
 *.d
+release
+a.out
