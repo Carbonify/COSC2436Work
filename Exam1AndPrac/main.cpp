@@ -1,48 +1,41 @@
-#include <iostream>
+#include <cstdio>
 
-using namespace std;
+int getSum (const int val, const int dist, const int runningTotal = 0)
+{
+  // Implement function
 
-bool isPrime(const int testNum, const int divisor = 2) {
+  /*
+    Write a recursive function get Sum(int value, int distance) that provides the sum of all even values up to a certain distance from a starting value, but counting backwards. For example,
 
-  if(testNum == 1) {
-    return false;
+    getSum( 12, 5 )
+
+    will consider the values 12, 11, 10, 9, and 8 (i.e. 5 values including the starting value), but the sum returned will only use the even values in that sequence, i.e. 12+10+8 = 30
+
+    Input and distance values provided are guaranteed to be larger or equal to zero.
+  */
+
+  if(dist == 0) {
+    return runningTotal;
   }
-  if(testNum == 2 || testNum == divisor) {
-    return true;
-  }
-  if(testNum % divisor == 0 && testNum != divisor) {
-    return false;
+
+  if(val == 0) {
+    return 0;
   }
 
-  return isPrime(testNum, divisor + 1);
+  if(val % 2 == 0) { //even, so add it to the total we're passing forward
+    return getSum(val-1, dist-1, runningTotal+ val);
+  } else {
+    return getSum(val-1, dist-1, runningTotal); //else just continue with the total unchanged
+  }
 }
 
-int main () {
 
+int main ( int argc, char **argv )
+{
 
-  /*
-
-    Complete the recursive function isPrime to determine if a number is prime (divisible only by 1 or itself).
-
-    Hints:
-
-    This function takes 2 arguments: the number to test, and a possible divisor. The divisor has a
-
-    default value of 2 (the first one that is tested), so the function isPrime can be called using only the number to be tested as argument, such as
-
-  */
-
-  for(int i = 0; i < 50; i++) {
-    cout << "Is " << i << " prime? " << isPrime(i) << endl;
-  }
-
-  /*
-
-    You can assume this function will be used to test only positive (>0) integer numbers
-    Watch out for special cases: 1 (not prime) and 2 (prime)
-
-  */
-
+  printf("Input is 12, 5, output is %d, should be 30\n", getSum(12,5));
+  printf("Input is 120, 10, output is %d, should be 580\n", getSum(120,10));
+  printf("Input is 0, 10, output is %d, should be 0\n", getSum(0,10));
 
   return 0;
 }

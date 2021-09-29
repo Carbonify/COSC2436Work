@@ -117,6 +117,7 @@ public:
       count--;
       printf("Client removed from queue. Queue now has %d clients.\n", count);
     }
+
     //should really return the dequeued element, but....
   }
 
