@@ -4,8 +4,6 @@
 #include "server_list_type.h"
 #include "waiting_client_queue_type.h"
 
-#include "queue_type.h"
-
 
 using namespace std;
 
