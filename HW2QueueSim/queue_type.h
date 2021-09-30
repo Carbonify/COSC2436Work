@@ -1,13 +1,11 @@
 #ifndef QUEUE_TYPE_H
 #define QUEUE_TYPE_H
 
-#include <iostream>
-#include <cstdio>
-#include <cassert>
+#include <iostream> //for cout
+#include <cstdio> // for printf
+#include <cassert> // for assert
 
 #include "queueADT.h"
-
-using namespace std;
 
 template <class Type>
 class queueType : public queueADT<Type>
@@ -75,9 +73,9 @@ public:
 
   //resets numerical values to 0, does not reallocate list
   void initializeQueue() {
-    count = 0;
+    count      = 0;
     queueFront = 0;
-    queueRear = 0;
+    queueRear  = 0;
   }
 
 
