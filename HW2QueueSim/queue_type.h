@@ -20,6 +20,7 @@ private:
 public:
   queueType(int queueSize = 100)
   {
+    //If queue size is invalid, default to 100
     maxQueueSize = (queueSize > 1)? queueSize : 100;
     initializeQueue();
     list = new Type[maxQueueSize];
@@ -50,12 +51,13 @@ public:
     count = other.count; //sync count, as that hasn't changed
   }
 
-  void printQueue() {
+  void printQueue() const {
+    //Iterate across the "queue" part of the array, from queueFront to
+    //queueRear, wrapping around once we hit the end of the array.
     for(int i = queueFront; i <= queueRear; i = (i+1) % maxQueueSize) {
       std::cout << "[" << i << "] " << list[i] << std::endl;
     }
   }
-
 
   ~queueType() {
     delete[] list;
@@ -85,10 +87,15 @@ public:
     queueRear  = 0;
   }
 
-
+  //Return front of queue, ergo next to be deQueued.
   Type front() const {
     assert(!isEmptyQueue());
     return list[queueFront];
+  }
+
+  //Alias for front()
+  Type peek() const {
+    return front();
   }
 
   Type back() const {
