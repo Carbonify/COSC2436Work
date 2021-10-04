@@ -10,6 +10,13 @@
 template <class Type>
 class queueType : public queueADT<Type>
 {
+private:
+  int maxQueueSize; //variable to store the maximum queue size
+  int count; //variable to store the number of elements
+  int queueFront; //variable to point to the first element
+  int queueRear; //variable to point to the last element
+  Type* list; //pointer to the array that holds the queue
+
 public:
   queueType(int queueSize = 100)
   {
@@ -120,12 +127,6 @@ public:
   }
 
 
-private:
-  int maxQueueSize; //variable to store the maximum queue size
-  int count; //variable to store the number of elements
-  int queueFront; //variable to point to the first element
-  int queueRear; //variable to point to the last element
-  Type* list; //pointer to the array that holds the queue
 };
 
 #endif // !QUEUE_TYPE_H
