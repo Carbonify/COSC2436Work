@@ -13,6 +13,8 @@ hashTable::hashTable ( int tableSize )
 hashTable::~hashTable ()
 {
   // implement destructor;
+  delete[] puppies;
+  puppies = nullptr;
 }
 
 int hashTable::length() const
