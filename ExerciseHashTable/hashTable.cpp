@@ -4,6 +4,9 @@
 hashTable::hashTable ( int tableSize )
 {
   // implement constructor
+  int fixedTableSize = (tableSize >= 1)? tableSize : 100;
+  puppies = new Puppy[fixedTableSize];
+  count = 0;
 
 }
 
