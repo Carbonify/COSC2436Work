@@ -16,3 +16,6 @@ release: ${OBJECTS}
 
 clean:
 	-rm *.o *.d hashtable release
+
+TAGS: hashtable
+	unitags -eR *
