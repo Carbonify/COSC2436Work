@@ -30,6 +30,7 @@ public:
   queueType(const queueType& other) {
     initializeQueue();
 
+
     //sync list sizes
     list = new Type[other.maxQueueSize];
     maxQueueSize = other.maxQueueSize;
