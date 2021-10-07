@@ -1,11 +1,12 @@
 #include <cstdio>
 #include "hashTable.h"
 
-hashTable::hashTable ( int tableSize ): count(0)
+hashTable::hashTable ( int tableSize )
 {
   // implement constructor
   int fixedTableSize = (tableSize >= 1)? tableSize : 100;
   puppies = new Puppy[fixedTableSize];
+  count = fixedTableSize;
 
   //set all puppies' age to -1, so we know when spots are empty
   for(int i = 0; i<fixedTableSize; i++) {
@@ -28,8 +29,8 @@ int hashTable::length() const
 void hashTable::insert ( const Puppy &newItem )
 {
   // implement function
-  if(puppies[newItem.age].age != -1) { //valid insert
-    puppies[newItem.age] = newItem;
+  if(puppies[newItem.age % count].age == -1) { //valid insert
+    puppies[newItem.age % count] = newItem;
   } else {
     printf("Slot %d already occupied, cannot add Puppy\n", newItem.age);
   }
