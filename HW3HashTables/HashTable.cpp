@@ -23,7 +23,15 @@ int HashTable::hashFunc(string password) {
 
 int HashTable::numElementsInBucket(int bucketIndex) {
   //return number of passwords in specified bucket of hash table
-  return 0;
+
+  auto* iter = bucketArray[bucketIndex].head;
+  int entries = 0;
+
+  while(iter) {
+    iter = iter->next;
+    entries++;
+  }
+  return entries;
 }
 
 void HashTable::addElement(string password, bool actualPassword) {
