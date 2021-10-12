@@ -1,3 +1,4 @@
+#include "BucketNode.h"
 #include "HashTable.h"
 #include <iostream>
 
@@ -24,7 +25,7 @@ int HashTable::hashFunc(string password) {
 int HashTable::numElementsInBucket(int bucketIndex) {
   //return number of passwords in specified bucket of hash table
 
-  auto* iter = bucketArray[bucketIndex].head;
+  BucketNode* iter = bucketArray[bucketIndex].head;
   int entries = 0;
 
   while(iter) {
