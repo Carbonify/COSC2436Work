@@ -8,6 +8,8 @@ HashTable::HashTable() {
 
 HashTable::~HashTable() {
   //free memory related to the table
+  delete[] bucketArray;
+  bucketArray = nullptr;
 }
 
 int HashTable::hashFunc(string password) {
