@@ -82,7 +82,7 @@ void HashTable::printCollisions() {
   int elementsFound;
   for(int i = 0; i < maxBuckets; i++){
     elementsFound = numElementsInBucket(i);
-    if(elementsFound > 1) {
+    if(elementsFound > 1 && bucketArray[i].head->actualPassword) {
       printf("%s: %d collisions\n", bucketArray[i].head->password.c_str(), elementsFound);
     }
   }
