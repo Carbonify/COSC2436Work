@@ -13,7 +13,7 @@ HashTable::~HashTable() {
   bucketArray = nullptr;
 }
 
-int HashTable::hashFunc(string password) {
+int HashTable::hashFunc(const string password) {
   int hashval = 0;
   for (unsigned int i = 0; i < password.size(); i++) {
     hashval = hashval + ((char)password[i]);
@@ -22,7 +22,7 @@ int HashTable::hashFunc(string password) {
   return hashval;
 }
 
-int HashTable::numElementsInBucket(int bucketIndex) {
+int HashTable::numElementsInBucket(const int bucketIndex) {
   //return number of passwords in specified bucket of hash table
 
   BucketNode* iter = bucketArray[bucketIndex].head;
@@ -36,7 +36,7 @@ int HashTable::numElementsInBucket(int bucketIndex) {
 }
 
 //add password to correct bucket in hash table; also, indicate if password was from the actualPassword.txt file or attemptedPassword.txt file
-void HashTable::addElement(string password, bool actualPassword) {
+void HashTable::addElement(const string password, const bool actualPassword) {
   BucketNode* newElement = new BucketNode();
   newElement->password = password;
   newElement->actualPassword = actualPassword;
