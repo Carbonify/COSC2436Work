@@ -82,8 +82,10 @@ void HashTable::printCollisions() {
   int elementsFound;
   for(int i = 0; i < maxBuckets; i++){
     elementsFound = numElementsInBucket(i);
-    if(elementsFound > 1 && bucketArray[i].head->actualPassword) {
-      printf("%s: %d collisions\n", bucketArray[i].head->password.c_str(), elementsFound-1);
+    BucketNode* bucketHead = bucketArray[i].head;
+
+    if(elementsFound > 1 && bucketHead->actualPassword) { //if collisions exist and password is real
+      printf("%s: %d collisions\n", bucketHead->password.c_str(), elementsFound - 1);
     }
   }
 }
