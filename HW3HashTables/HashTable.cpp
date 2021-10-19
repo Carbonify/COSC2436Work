@@ -11,14 +11,11 @@ HashTable::~HashTable() {
   //free memory in each bucket
   for(int i = 0; i < maxBuckets; i++) {
     BucketNode* iter = bucketArray[i].head;
-    while(iter->next) { //find tail
-      iter = iter->next;
+    while(iter) {
+      BucketNode* iterNext = iter->next;
+      delete iter;
+      iter = iterNext;
     }
-    while(iter->prev) { //delete back up list from tail to head
-      iter = iter->prev;
-      delete iter->next;
-    }
-    delete iter; //finally, delete iter
   }
   //free memory related to the table
   delete[] bucketArray;
