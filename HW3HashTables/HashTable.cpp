@@ -8,6 +8,18 @@ HashTable::HashTable() {
 }
 
 HashTable::~HashTable() {
+  //free memory in each bucket
+  for(int i = 0; i < maxBuckets; i++) {
+    BucketNode* iter = bucketArray[i].head;
+    while(iter->next) { //find tail
+      iter = iter->next;
+    }
+    while(iter->prev) { //delete back up list from tail to head
+      iter = iter->prev;
+      delete iter->next;
+    }
+    delete iter; //finally, delete iter
+  }
   //free memory related to the table
   delete[] bucketArray;
   bucketArray = nullptr;
@@ -41,7 +53,7 @@ void HashTable::addElement(const string password, const bool actualPassword) {
   newElement->password = password;
   newElement->actualPassword = actualPassword;
 
-  int hashLocation = hashFunc(password);
+  const int hashLocation = hashFunc(password);
   HashBucket& insertBucket = bucketArray[hashLocation];
 
   if(! insertBucket.head) { //no existing element at location
