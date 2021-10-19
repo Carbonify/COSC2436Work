@@ -35,8 +35,26 @@ int HashTable::numElementsInBucket(int bucketIndex) {
   return entries;
 }
 
+//add password to correct bucket in hash table; also, indicate if password was from the actualPassword.txt file or attemptedPassword.txt file
 void HashTable::addElement(string password, bool actualPassword) {
-  //add password to correct bucket in hash table; also, indicate if password was from the actualPassword.txt file or attemptedPassword.txt file
+  BucketNode* newElement = new BucketNode();
+  newElement->password = password;
+  newElement->actualPassword = actualPassword;
+
+  int hashLocation = hashFunc(password);
+  HashBucket& insertBucket = bucketArray[hashLocation];
+
+  if(! insertBucket.head) { //no existing element at location
+    insertBucket.head = newElement;
+  } else { //need to add to linked list
+    BucketNode* iter = insertBucket.head;
+    while(iter->next){ //move iter pointer to end of list
+      iter = iter->next;
+    }
+    //add new element to the end of the chain
+    newElement->prev = iter;
+    iter->next = newElement;
+  }
 }
 
 //print all nodes in buckets consisting of only one element, then delete that element
