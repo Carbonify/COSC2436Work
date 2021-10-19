@@ -1,6 +1,6 @@
 #include "BucketNode.h"
 #include "HashTable.h"
-#include <iostream>
+#include <cstdio>
 
 HashTable::HashTable() {
   bucketArray = new HashBucket[10];
@@ -43,6 +43,13 @@ void HashTable::removeElements() {
   //print all nodes in buckets consisting of only one element, then delete that element
 }
 
+//print all compromised passwords
 void HashTable::printCollisions() {
-  //print all compromised passwords
+  int elementsFound;
+  for(int i = 0; i < maxBuckets; i++){
+    elementsFound = numElementsInBucket(i);
+    if(elementsFound > 1) {
+      printf("%s: %d collisions\n", bucketArray[i].head->password.c_str(), elementsFound);
+    }
+  }
 }
