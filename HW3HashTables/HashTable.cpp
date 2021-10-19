@@ -39,8 +39,15 @@ void HashTable::addElement(string password, bool actualPassword) {
   //add password to correct bucket in hash table; also, indicate if password was from the actualPassword.txt file or attemptedPassword.txt file
 }
 
+//print all nodes in buckets consisting of only one element, then delete that element
 void HashTable::removeElements() {
-  //print all nodes in buckets consisting of only one element, then delete that element
+  for(int i = 0; i < maxBuckets; i++) {
+    if(numElementsInBucket(i) == 1) {
+      printf("%s deleted\n", bucketArray[i].head->password.c_str());
+      delete bucketArray[i].head;
+      bucketArray[i].head = nullptr;
+    }
+  }
 }
 
 //print all compromised passwords
