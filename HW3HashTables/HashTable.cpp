@@ -1,10 +1,10 @@
 #include "BucketNode.h"
 #include "HashTable.h"
-#include <cstdio>
+#include <cstdio> //for printf
 
 HashTable::HashTable() {
-  bucketArray = new HashBucket[10];
   maxBuckets = 10;
+  bucketArray = new HashBucket[maxBuckets];
 }
 
 HashTable::~HashTable() {
@@ -27,8 +27,7 @@ int HashTable::hashFunc(const string password) {
   for (unsigned int i = 0; i < password.size(); i++) {
     hashval = hashval + ((char)password[i]);
   }
-  hashval = hashval % 10;
-  return hashval;
+  return hashval % 10;
 }
 
 int HashTable::numElementsInBucket(const int bucketIndex) {
