@@ -49,8 +49,8 @@ void HashTable::addElement(const string password, const bool actualPassword) {
   newElement->password = password;
   newElement->actualPassword = actualPassword;
 
-  const int hashLocation = hashFunc(password);
-  HashBucket& insertBucket = bucketArray[hashLocation];
+  //determine bucket to insert new entry into
+  HashBucket& insertBucket = bucketArray[hashFunc(password)];
 
   if(! insertBucket.head) { //no existing element at location
     insertBucket.head = newElement;
