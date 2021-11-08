@@ -74,7 +74,30 @@ bool BSTree::addNode(string key)
   return true;
 }
 
+bool addNodeHelper(BSTNode* toAdd, BSTNode* current) {
+  if (toAdd->getKey().compare(current->getKey()) == 0) { //duplicate
+    return false;
+  } else if (toAdd->getKey().compare(current->getKey()) < 0) { //left hand
+    if (!current->getLeftChild()) {
+      current->setLeftChild(toAdd);
+      return true;
+    }
+    return addNodeHelper(toAdd, current->getLeftChild());
+  } else { //right hand
+    if (!current->getRightChild()) {
+      current->setRightChild(toAdd);
+      return true;
+    }
+    return addNodeHelper(toAdd, current->getRightChild());
+  }
+}
+
 bool BSTree::addNode(BSTNode* item)
 {
   //implement function
+  if (!rootNode) {
+    rootNode = item;
+    return true;
+  }
+  return addNodeHelper(item, rootNode);
 }
