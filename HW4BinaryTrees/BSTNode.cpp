@@ -2,9 +2,7 @@
 #include "BSTNode.h"
 
 
-
-BSTNode::BSTNode(string key)
-{
+BSTNode::BSTNode(string key) {
     NodeKey = key;
     LeftChild = nullptr;
     RightChild = nullptr;

@@ -1,6 +1,6 @@
 CXX = g++
 CXXFLAGS = -g -Wall -MMD
-OBJECTS = BSTNode.cpp BSTree.cpp BSTUtils.cpp main.cpp
+OBJECTS = BSTNode.o BSTree.o BSTUtils.o main.o
 DEPENDS = ${OBJECTS:.o=.d}    # substitutes ".o" with ".d"
 EXEC = binarytree
 
@@ -13,5 +13,5 @@ ${EXEC} : ${OBJECTS}
 clean:
 	-rm *.o *.d binarytree
 
-TAGS: hashtable
+TAGS: binarytree
 	unitags -eR *

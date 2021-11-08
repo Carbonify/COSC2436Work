@@ -55,10 +55,14 @@ int BSTree::getNumNodes() const
   return countNodes(rootNode);
 }
 
+string representationHelper(string result, BSTNode* current) {
+
+}
 
 string BSTree::getRepresentation()
 {
   //implement function
+
 }
 
 BSTNode* getNodeHelper(string toFind, BSTNode* current) {
