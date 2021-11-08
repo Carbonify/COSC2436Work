@@ -55,14 +55,24 @@ int BSTree::getNumNodes() const
   return countNodes(rootNode);
 }
 
-string representationHelper(string result, BSTNode* current) {
-
+void representationHelper(string& result, BSTNode* current) {
+  //god this is such a weird way of doing this, good thing strings are mutable
+  if (current) {
+    result += ">" + current->getKey() + "\n";
+  } else {
+    result += ">[NULL]\n";
+    return;
+  }
+  representationHelper(result, current->getLeftChild());
+  representationHelper(result, current->getRightChild());
 }
 
 string BSTree::getRepresentation()
 {
   //implement function
-
+  string result = "";
+  representationHelper(result, rootNode);
+  return result;
 }
 
 BSTNode* getNodeHelper(string toFind, BSTNode* current) {
