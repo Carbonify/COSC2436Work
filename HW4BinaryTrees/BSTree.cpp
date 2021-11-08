@@ -26,7 +26,6 @@ BSTree::~BSTree()
 
 int countHeight(BSTNode *start)
 {
-  int retd;
   if (nullptr == start)
     {
       return -1;
@@ -66,15 +65,15 @@ int BSTree::getNumNodes() const
 }
 
 void representationHelper(string& result, BSTNode* current) {
-  //god this is such a weird way of doing this, good thing strings are mutable
   if (current) {
-    result += ">" + current->getKey() + "\n";
+    result += '>' + current->getKey() + '\n';
+    result += 'l';
+    representationHelper(result, current->getLeftChild());
+    result += 'r';
+    representationHelper(result, current->getRightChild());
   } else {
     result += ">[NULL]\n";
-    return;
   }
-  representationHelper(result, current->getLeftChild());
-  representationHelper(result, current->getRightChild());
 }
 
 string BSTree::getRepresentation()
@@ -112,7 +111,7 @@ bool BSTree::addNode(string key)
 bool addNodeHelper(BSTNode* toAdd, BSTNode* current) {
   if (toAdd->getKey().compare(current->getKey()) == 0) { //duplicate
     return false;
-  } else if (toAdd->getKey().compare(current->getKey()) < 0) { //left hand
+  } else if (toAdd->getKey().compare(current->getKey()) > 0) { //left hand
     if (!current->getLeftChild()) {
       current->setLeftChild(toAdd);
       return true;

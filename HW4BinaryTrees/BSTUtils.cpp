@@ -31,6 +31,5 @@ void array_to_bst(string key_arr[], int len, BSTree* i_bst)
 
 string* presort_array(string in_arr[], int len)
 {
-
-	//implement function
+  return in_arr;
 }
