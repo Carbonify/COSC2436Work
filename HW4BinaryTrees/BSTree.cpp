@@ -8,10 +8,20 @@ BSTree::BSTree()
   rootNode = nullptr;
 }
 
+void deconstructHelper(BSTNode* node)
+{
+  if (node) {
+    deconstructHelper(node->getLeftChild());
+    deconstructHelper(node->getRightChild());
+    delete node;
+  }
+}
+
 BSTree::~BSTree()
 {
   //implement destructor
-
+  deconstructHelper(rootNode);
+  rootNode = nullptr;
 }
 
 int countHeight(BSTNode *start)

@@ -5,6 +5,7 @@ string* file_to_array(string f_name, int *l)
 {
 	//implement function
 
+
 }
 
 void array_to_bst(string key_arr[], int len, BSTree* i_bst)
