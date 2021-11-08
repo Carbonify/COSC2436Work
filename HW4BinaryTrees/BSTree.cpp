@@ -18,16 +18,16 @@ int countHeight(BSTNode *start)
 {
   int retd;
   if (nullptr == start)
-  {
-    return -1;
-  }
+    {
+      return -1;
+    }
   else
-  {
-    int ld = countHeight(start->getLeftChild());
-    int rd = countHeight(start->getRightChild());
+    {
+      int ld = countHeight(start->getLeftChild());
+      int rd = countHeight(start->getRightChild());
 
-    return max(ld, rd) + 1;
-  }
+      return max(ld, rd) + 1;
+    }
 
 }
 
@@ -41,13 +41,13 @@ int BSTree::getHeight() const
 int countNodes(BSTNode* start)
 {
   if (nullptr == start)
-  {
-    return 0;
-  }
+    {
+      return 0;
+    }
   else
-  {
-    return 1 + countNodes(start->getLeftChild()) + countNodes(start->getRightChild());
-  }
+    {
+      return 1 + countNodes(start->getLeftChild()) + countNodes(start->getRightChild());
+    }
 }
 
 int BSTree::getNumNodes() const
@@ -61,9 +61,20 @@ string BSTree::getRepresentation()
   //implement function
 }
 
+BSTNode* getNodeHelper(string toFind, BSTNode* current) {
+  if (!current || current->getKey() == toFind) {
+    return current;
+  } else if (current->getKey().compare(toFind) < 0) { //left
+    return getNodeHelper(toFind, current->getLeftChild());
+  } else { //right
+    return getNodeHelper(toFind, current->getRightChild());
+  }
+}
+
 BSTNode* BSTree::getNode(string key)
 {
   //implement function
+  return getNodeHelper(key, rootNode);
 }
 
 
