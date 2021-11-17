@@ -64,23 +64,35 @@ int BSTree::getNumNodes() const
   return countNodes(rootNode);
 }
 
-void representationHelper(string& result, BSTNode* current) {
-  if (current) {
-    result += '>' + current->getKey() + '\n';
-    result += 'l';
-    representationHelper(result, current->getLeftChild());
-    result += 'r';
-    representationHelper(result, current->getRightChild());
+void representationHelper(string& result, BSTNode* current, string& path) {
+  if (result == "") {
+    result = ">" + current->getKey();
   } else {
-    result += ">[NULL]\n";
+    result += "\n" + path + current->getKey();
   }
+  //left side
+  if (current->getLeftChild()) {
+    string temp = path + "l>";
+    representationHelper(result, current->getLeftChild(), temp);
+  } else {
+    result += "\n" + path + "l>[NULL]";
+  }
+  //right side
+  if (current->getRightChild()) {
+    string temp = path + "r>";
+    representationHelper(result, current->getRightChild(), temp);
+  } else {
+    result += "\n" + path + "r>[NULL]";
+  }
+
 }
 
 string BSTree::getRepresentation()
 {
   //implement function
   string result = "";
-  representationHelper(result, rootNode);
+  string path = "";
+  representationHelper(result, rootNode, path);
   return result;
 }
 
