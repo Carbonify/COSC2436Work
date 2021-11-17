@@ -29,20 +29,11 @@ void array_to_bst(string key_arr[], int len, BSTree* i_bst)
   }
 }
 
-BSTNode* presortArrayHelper(string* array, int start, int end) {
-  if (start > end)
-    return nullptr;
-
-  int middle = (start + end)/2;
-
-}
-
 void sortArrayAscending(string* array, int length) {
   for(int i=0; i<length; i++) {
     for(int j=i; j<length; j++) {
       if (array[i] > array[j]) {
-        string temp;
-        temp = array[i];
+        string temp = array[i];
         array[i] = array[j];
         array[j] = temp;
       }
@@ -53,5 +44,12 @@ void sortArrayAscending(string* array, int length) {
 string* presort_array(string in_arr[], int len)
 {
   sortArrayAscending(in_arr, len); //sort array ascending first
-  return nullptr;
+  string* result = new string[len];
+  int middle = len/2;
+  result[0] = in_arr[middle];
+  for (int i = 1; i < len - 1; i++) {
+    result[i] = in_arr[middle+i];
+    result[i+1] = in_arr[middle-i];
+  }
+  return result;
 }
