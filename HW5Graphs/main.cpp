@@ -1,10 +1,9 @@
 #include <iostream>
-#include "Graph.h"
 
-using namespace std;
+#include "Graph.hpp"
 
 int main(int argc, char* argv[]) {
-	//Implement main function
+  //Implement main function
 
-	return 0;
+  return 0;
 }
