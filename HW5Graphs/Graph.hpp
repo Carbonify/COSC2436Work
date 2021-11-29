@@ -15,12 +15,14 @@ class Graph {
     using namespace std;
     //Implement function
     matrix = vector<vector<int>>(mySize);
-    visited = vector<bool>(mySize);
-    resetVisited();
+    visited = vector<bool>(mySize, false);
   }
 
   void resetVisited() {
     //Implement function
+    for(int i = 0; i < visited.size(); i++) {
+      visited.at(i) = false;
+    }
   }
 
   void insertEdge(int v1, int v2, int weight) {
