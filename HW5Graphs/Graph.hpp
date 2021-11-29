@@ -12,7 +12,11 @@ class Graph {
 
  public:
   Graph(int mySize) {
+    using namespace std;
     //Implement function
+    matrix = vector<vector<int>>(mySize);
+    visited = vector<bool>(mySize);
+    resetVisited();
   }
 
   void resetVisited() {
