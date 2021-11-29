@@ -2,15 +2,16 @@
 #include <iostream>
 #include <climits>
 #include <vector>
+#include <stack>
 
 class Graph {
 
- private:
+private:
   std::vector<std::vector<int>> matrix;
   int size;
   std::vector<bool> visited;
 
- public:
+public:
   Graph(const int mySize) : size(mySize) {
     using namespace std;
     //Implement function
@@ -33,6 +34,24 @@ class Graph {
 
   void DFS(const int vertex) {
     //Implement function
+    auto dfsStack = std::stack<int>();
+
+    dfsStack.push(vertex);
+    resetVisited();
+
+    while (!dfsStack.empty()) {
+      int currentV = dfsStack.top();
+      dfsStack.pop();
+      if (!visited.at(currentV)) {
+        visited.at(currentV) = true;
+
+        //for each vertex adjV adjacent to currentV
+        //Push adjV to stack
+        for(const int& v : matrix.at(currentV)) {
+          if (v > 0) dfsStack.push(v);
+        }
+      }
+    }
   }
 
   bool edgeCheck() {
