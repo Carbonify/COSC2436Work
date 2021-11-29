@@ -27,6 +27,8 @@ class Graph {
 
   void insertEdge(const int v1, const int v2, const int weight) {
     //Implement function
+    matrix.at(v1).at(v2) = weight;
+    matrix.at(v2).at(v1) = weight;
   }
 
   void DFS(const int vertex) {
