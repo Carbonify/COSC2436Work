@@ -14,7 +14,7 @@ class Graph {
   Graph(const int mySize) : size(mySize) {
     using namespace std;
     //Implement function
-    matrix = vector<vector<int>>(mySize);
+    matrix = vector<vector<int>>(mySize, vector<int>(mySize, 0));
     visited = vector<bool>(mySize, false);
   }
 
