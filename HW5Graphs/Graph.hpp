@@ -11,7 +11,7 @@ class Graph {
   std::vector<bool> visited;
 
  public:
-  Graph(int mySize) {
+  Graph(const int mySize) : size(mySize) {
     using namespace std;
     //Implement function
     matrix = vector<vector<int>>(mySize);
@@ -20,21 +20,27 @@ class Graph {
 
   void resetVisited() {
     //Implement function
-    for(int i = 0; i < visited.size(); i++) {
+    for(unsigned long i = 0; i < visited.size(); i++) {
       visited.at(i) = false;
     }
   }
 
-  void insertEdge(int v1, int v2, int weight) {
+  void insertEdge(const int v1, const int v2, const int weight) {
     //Implement function
   }
 
-  void DFS(int vertex) {
+  void DFS(const int vertex) {
     //Implement function
   }
 
   bool edgeCheck() {
     //Implement function
+    for(const auto& x : visited) {
+      if (!x) {
+        return false;
+      }
+    }
+    return true;
   }
 
   int MST() {
