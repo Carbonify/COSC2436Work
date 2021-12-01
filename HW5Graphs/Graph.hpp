@@ -2,6 +2,7 @@
 #include <vector>
 #include <stack> //for DFS
 #include <queue> //for MST
+#include <cstdlib> //for rand()
 
 class Graph {
 
@@ -64,5 +65,38 @@ public:
 
   int MST() {
     //Implement function
+    using namespace std;
+
+    //typedefs for readability
+    typedef pair<int,int> intPair;
+    typedef vector<intPair> vectorIntPair;
+
+    int randomEntry = rand() % size;
+    int MSTCost = 0;
+
+    priority_queue<intPair, vectorIntPair, greater<intPair>> prioQueue;
+    prioQueue.push(make_pair(0, randomEntry));
+
+    vector<bool> added(size, false);
+
+    while(!prioQueue.empty()) {
+      intPair item = prioQueue.top();
+      prioQueue.pop();
+      int cost = item.first;
+      int nodeIndex = item.second;
+
+      if (!added.at(nodeIndex)) {
+        MSTCost += cost;
+        added.at(nodeIndex) = true;
+
+        for (int i = 0; i < size; i++) {
+          int weightAtI = matrix.at(0).at(i);
+          if (weightAtI > 0 && !added.at(i)) {
+            prioQueue.push(make_pair(weightAtI, i));
+          }
+        }
+      }
+    }
+    return MSTCost;
   }
 };
