@@ -14,23 +14,34 @@ int main(int argc, char* argv[]) {
   cin >> numberOfTeamsLeft;
   numberOfTeamsTotal = numberOfTeamsLeft; //track total
 
+  //manager tracking
+  int manager;
+  bool hasManager = false;
+
   while(numberOfTeamsLeft > 0) {
     cin >> empsPerTeam;
     Graph thisTeam(empsPerTeam);
 
     int v1, v2, weight;
-    while(true) {
+    while(true) { //read in employees and add to graph
       cin >> v1 >> v2 >> weight;
       if (v1 == -1 && v2 == -1 && weight == -1) { //done declaring edges
+        hasManager = false; //reset manager for next team
         break;
       }
+
+      if (!hasManager) {
+        manager = v1;
+        hasManager = true;
+      }
+
       thisTeam.insertEdge(v1, v2, weight);
     }
 
     int newV1, newV2, newWeight;
     cin >> newV1 >> newV2 >> newWeight;
 
-    thisTeam.DFS(0);
+    thisTeam.DFS(manager); //check dfs from manager desk
     if (!thisTeam.edgeCheck()) {
       cout << "No path is formed from each location to every other" << endl;
       edgeCheckFails++;
