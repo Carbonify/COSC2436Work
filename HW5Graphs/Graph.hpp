@@ -46,8 +46,8 @@ public:
         visited.at(currentV) = true;
 
         //for each vertex adjV adjacent to currentV, push adjV to stack
-        for(const int& v : matrix.at(currentV)) {
-          if (v > 0) dfsStack.push(v);
+        for(int i = 0; i < size; i++) {
+          if (matrix.at(currentV).at(i) > 0) dfsStack.push(i); //push if weight > 0, aka adjacent
         }
       }
     }
