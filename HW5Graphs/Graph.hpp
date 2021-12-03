@@ -70,6 +70,7 @@ public:
     int MSTCost = 0;
     int edges = 0;
     int locationToVisit = 0;
+    int bestX, bestY;
 
     visited.at(0) = true;
 
@@ -82,7 +83,8 @@ public:
             if (!visited.at(j) && weight > 0) { //not visited, has connection
               if (minimum > weight) { //connection is cheapest
                 minimum = weight;
-                MSTCost += weight;
+                bestX = i;
+                bestY = j;
                 locationToVisit = j;
               }
             }
@@ -90,6 +92,7 @@ public:
         }
       }
       edges++;
+      MSTCost += matrix.at(bestX).at(bestY);
       visited.at(locationToVisit) = true;
     }
     return MSTCost;
