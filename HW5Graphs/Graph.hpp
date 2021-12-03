@@ -63,8 +63,7 @@ public:
   }
 
   int MST() {
-    //Implement function
-    using namespace std;
+    //Calculates MST of `matrix` via prim's algorithm.
     resetVisited();
 
     int MSTCost = 0;
