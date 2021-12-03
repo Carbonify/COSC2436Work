@@ -77,7 +77,7 @@ public:
     priority_queue<intPair, vectorIntPair, greater<intPair>> prioQueue;
     prioQueue.push(make_pair(0, randomEntry));
 
-    vector<bool> added(size, false);
+    resetVisited();
 
     while(!prioQueue.empty()) {
       intPair item = prioQueue.top();
@@ -85,13 +85,13 @@ public:
       int cost = item.first;
       int nodeIndex = item.second;
 
-      if (!added.at(nodeIndex)) {
+      if (!visited.at(nodeIndex)) {
         MSTCost += cost;
-        added.at(nodeIndex) = true;
+        visited.at(nodeIndex) = true;
 
         for (int i = 0; i < size; i++) {
           int weightAtI = matrix.at(0).at(i);
-          if (weightAtI > 0 && !added.at(i)) {
+          if (weightAtI > 0 && !visited.at(i)) {
             prioQueue.push(make_pair(weightAtI, i));
           }
         }
