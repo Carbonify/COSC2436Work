@@ -68,10 +68,10 @@ int main(int argc, char* argv[]) {
   }
 
   //final prints
-  printf("Number of employees' offices with invalid paths: %d/%d",
+  printf("Number of employees' offices with invalid paths: %d/%d\n",
          edgeCheckFails,
          numberOfTeamsTotal);
-  printf("Number of employees who would benefit from moving offices: %d/%d",
+  printf("Number of employees who would benefit from moving offices: %d/%d\n",
          numToMove,
          numberOfTeamsTotal);
 
